@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace ProcureSoft.ExifEditor.Gui
+namespace ProcureSoft.ExifEditor.Gui.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
