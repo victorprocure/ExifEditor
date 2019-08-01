@@ -3,9 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
+                xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
+             prism:ViewModelLocator.AutoWireViewModel="true"
         xmlns:vms="clr-namespace:ProcureSoft.ExifEditor.Modules.Files.FileList.ViewModels"
              d:DataContext="{d:DesignInstance d:Type=vms:FileListViewModel, IsDesignTimeCreatable=False}">
-    <ListView BorderThickness="0" Width="Auto" ItemsSource="{Binding FileList}">
-    </ListView>
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid>
+            <TextBlock Text="{Binding Path=FileList.CurrentDirectory}" />
+        </Grid>
+        <ListView Name="fileListView" BorderThickness="0" Width="Auto" ItemsSource="{Binding Path=FileList.Files}" AlternationCount="2">
+            <behaviors:Interaction.Triggers>
+                <behaviors:EventTrigger EventName="SelectionChanged">
+                    <behaviors:ChangePropertyAction TargetObject="{Binding Mode=OneWay}" PropertyName="SelectedItems" Value="{Binding Path=SelectedItems, ElementName=fileListView}" />
+                </behaviors:EventTrigger>
+            </behaviors:Interaction.Triggers>
+            <ListView.View>
+                <GridView AllowsColumnReorder="true">
+                    <GridViewColumn Header="File Name" DisplayMemberBinding="{Binding Path=FileName}" />
+                    <GridViewColumn Width="65" Header="Has EXIF Data" DisplayMemberBinding="{Binding Path=HasExifData}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </StackPanel>
 </UserControl>

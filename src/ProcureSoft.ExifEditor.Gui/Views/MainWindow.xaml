@@ -11,11 +11,19 @@
         prism:ViewModelLocator.AutoWireViewModel="true"
         d:DataContext="{d:DesignInstance d:Type=viewModels:MainWindowViewModel, IsDesignTimeCreatable=False}"
         Title="{Binding Title}" Height="600" Width="800">
-    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top">
-        <Grid x:Name="ContentGrid" Grid.Row="1">
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="ContentGrid" Grid.Row="0">
             <ContentControl Background="AliceBlue" VerticalAlignment="Stretch" prism:RegionManager.RegionName="{x:Static inf:RegionNames.MainRegion}" />
         </Grid>
-        <Grid x:Name="DetailsGrid" Grid.Row="2" Margin="10,10,10,10">
+        <Grid x:Name="DetailsGrid" Grid.Row="1" Margin="10,10,10,10">
             <ContentControl Background="Aqua" prism:RegionManager.RegionName="{x:Static inf:RegionNames.ExifEditRegion}">
                 <ContentControl.Template>
                     <ControlTemplate TargetType="ContentControl">
@@ -28,7 +36,7 @@
                 </ContentControl.Template>
             </ContentControl>
         </Grid>
-        <Grid x:Name="SideGrid" Margin="10,29,10,10" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3">
+        <Grid x:Name="SideGrid" Margin="10,29,10,10" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
             <controls:InformationControl Background="Azure" prism:RegionManager.RegionName="{x:Static inf:RegionNames.InformationRegion}">
                 <controls:InformationControl.Template>
                     <ControlTemplate TargetType="controls:InformationControl">

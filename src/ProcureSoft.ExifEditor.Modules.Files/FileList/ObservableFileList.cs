@@ -2,13 +2,14 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using Prism.Events;
+using Prism.Mvvm;
 using ProcureSoft.ExifEditor.Infrastructure;
 using ProcureSoft.ExifEditor.Modules.Files.FileList.Services;
 using TagLib;
 
 namespace ProcureSoft.ExifEditor.Modules.Files.FileList
 {
-    public sealed class ObservableFileList : IObservableFileList, IDisposable
+    public sealed class ObservableFileList : BindableBase, IObservableFileList, IDisposable
     {
         private readonly IFileListService _fileListService;
         private readonly SubscriptionToken _fileDirectoryChangedEventToken;
@@ -22,6 +23,7 @@ namespace ProcureSoft.ExifEditor.Modules.Files.FileList
         }
 
         public ObservableCollection<FileListItem> Files { get; } = new ObservableCollection<FileListItem>();
+        public string CurrentDirectory => _fileListService.CurrentDirectory;
 
         public void Dispose() => _fileDirectoryChangedEventToken.Dispose();
 
@@ -33,6 +35,7 @@ namespace ProcureSoft.ExifEditor.Modules.Files.FileList
                 return;
             }
 
+            RaisePropertyChanged(nameof(CurrentDirectory));
             PopulateFileList();
         }
 
