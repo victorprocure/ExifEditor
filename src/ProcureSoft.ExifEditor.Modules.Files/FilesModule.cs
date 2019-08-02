@@ -13,10 +13,7 @@ namespace ProcureSoft.ExifEditor.Modules.Files
     {
         private readonly IRegionManager _regionManager;
 
-        public FilesModule(IRegionManager regionManager)
-        {
-            _regionManager = regionManager;
-        }
+        public FilesModule(IRegionManager regionManager) => _regionManager = regionManager;
 
         public void OnInitialized(IContainerProvider containerProvider)
             => _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, () => containerProvider.Resolve<FileListView>());

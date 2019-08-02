@@ -11,15 +11,9 @@ namespace ProcureSoft.ExifEditor.Modules.Files.FileList.Services
     {
         private readonly IEventAggregator _eventAggregator;
 
-        public FileListService(IEventAggregator eventAggregator)
-        {
-            _eventAggregator = eventAggregator;
-        }
+        public FileListService(IEventAggregator eventAggregator) => _eventAggregator = eventAggregator;
 
         public string CurrentDirectory { get; private set; } = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-
-        public IEnumerable<FileInfo> GetAllFiles()
-            => Directory.GetFiles(CurrentDirectory).Select(f => new FileInfo(f));
 
         public void ChangeDirectory(string directory)
         {
@@ -31,5 +25,8 @@ namespace ProcureSoft.ExifEditor.Modules.Files.FileList.Services
 
             _eventAggregator.GetEvent<FileDirectoryChangedEvent>().Publish((oldDirectory, CurrentDirectory));
         }
+
+        public IEnumerable<FileInfo> GetAllFiles()
+                    => Directory.GetFiles(CurrentDirectory).Select(f => new FileInfo(f));
     }
 }

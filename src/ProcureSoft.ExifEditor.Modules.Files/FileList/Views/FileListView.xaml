@@ -4,27 +4,30 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:prism="http://prismlibrary.com/"
-                xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
-             prism:ViewModelLocator.AutoWireViewModel="true"
         xmlns:vms="clr-namespace:ProcureSoft.ExifEditor.Modules.Files.FileList.ViewModels"
+             xmlns:converters="clr-namespace:ProcureSoft.ExifEditor.Infrastructure.Converters;assembly=ProcureSoft.ExifEditor.Infrastructure"
+             xmlns:controls ="clr-namespace:ProcureSoft.ExifEditor.Modules.Files.Controls"
              d:DataContext="{d:DesignInstance d:Type=vms:FileListViewModel, IsDesignTimeCreatable=False}">
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Grid>
-            <TextBlock Text="{Binding Path=FileList.CurrentDirectory}" />
-        </Grid>
-        <ListView Name="fileListView" BorderThickness="0" Width="Auto" ItemsSource="{Binding Path=FileList.Files}" AlternationCount="2">
-            <behaviors:Interaction.Triggers>
-                <behaviors:EventTrigger EventName="SelectionChanged">
-                    <behaviors:ChangePropertyAction TargetObject="{Binding Mode=OneWay}" PropertyName="SelectedItems" Value="{Binding Path=SelectedItems, ElementName=fileListView}" />
-                </behaviors:EventTrigger>
-            </behaviors:Interaction.Triggers>
-            <ListView.View>
-                <GridView AllowsColumnReorder="true">
-                    <GridViewColumn Header="File Name" DisplayMemberBinding="{Binding Path=FileName}" />
-                    <GridViewColumn Width="65" Header="Has EXIF Data" DisplayMemberBinding="{Binding Path=HasExifData}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
-    </StackPanel>
+    <UserControl.Resources>
+        <converters:FileNameConverter x:Key="FileNameConverter" />
+    </UserControl.Resources>
+    <controls:StoragePicker QueryOnExpanded="True">
+        <controls:StoragePicker.ItemContainerStyle>
+            <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </Style>
+        </controls:StoragePicker.ItemContainerStyle>
+        <controls:StoragePicker.ItemTemplate>
+            <HierarchicalDataTemplate ItemsSource="{Binding Children, Mode=OneWay}">
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox
+                    IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="0,0,5,0" />
+                    <TextBlock
+                    Text="{Binding Path, Converter={StaticResource FileNameConverter}, Mode=OneWay}" />
+                </StackPanel>
+            </HierarchicalDataTemplate>
+        </controls:StoragePicker.ItemTemplate>
+    </controls:StoragePicker>
 </UserControl>

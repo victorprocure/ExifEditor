@@ -11,15 +11,12 @@ namespace ProcureSoft.ExifEditor.Gui
     /// </summary>
     public partial class App
     {
+        protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog) => moduleCatalog.AddModule<FilesModule>();
+
         protected override Window CreateShell() => Container.Resolve<MainWindow>();
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-        }
-
-        protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
-        {
-            moduleCatalog.AddModule<FilesModule>();
         }
     }
 }

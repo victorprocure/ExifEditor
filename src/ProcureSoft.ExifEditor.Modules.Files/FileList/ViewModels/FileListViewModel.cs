@@ -9,10 +9,7 @@ namespace ProcureSoft.ExifEditor.Modules.Files.FileList.ViewModels
         private readonly ObservableCollection<FileListItem> _selectedItems = new ObservableCollection<FileListItem>();
         private IObservableFileList _fileList;
 
-        public FileListViewModel(IObservableFileList fileList)
-        {
-            FileList = fileList;
-        }
+        public FileListViewModel(IObservableFileList fileList) => FileList = fileList;
 
         public IObservableFileList FileList
         {
