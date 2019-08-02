@@ -7,8 +7,8 @@ namespace ProcureSoft.ExifEditor.Modules.Files.FileList.Services
     {
         string CurrentDirectory { get; }
 
-        IEnumerable<FileInfo> GetAllFiles();
-
         void ChangeDirectory(string directory);
+
+        IEnumerable<FileInfo> GetAllFiles();
     }
 }

@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ProcureSoft.ExifEditor.Modules.Files.Controls
@@ -91,7 +86,7 @@ namespace ProcureSoft.ExifEditor.Modules.Files.Controls
             set => SetProperty(ref _queryOnExpanded, value);
         }
 
-        public async void BeginQuery(ISystemProvider systemProvider) => await Task.Run(() => Query(systemProvider)).ConfigureAwait(false);
+        public async Task BeginQuery(ISystemProvider systemProvider) => await Task.Run(() => Query(systemProvider)).ConfigureAwait(false);
 
         public void Dispose()
         {

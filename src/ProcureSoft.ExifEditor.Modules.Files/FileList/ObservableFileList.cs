@@ -11,8 +11,8 @@ namespace ProcureSoft.ExifEditor.Modules.Files.FileList
 {
     public sealed class ObservableFileList : BindableBase, IObservableFileList, IDisposable
     {
-        private readonly IFileListService _fileListService;
         private readonly SubscriptionToken _fileDirectoryChangedEventToken;
+        private readonly IFileListService _fileListService;
 
         public ObservableFileList(IFileListService fileListService, IEventAggregator eventAggregator)
         {
@@ -22,8 +22,8 @@ namespace ProcureSoft.ExifEditor.Modules.Files.FileList
             PopulateFileList();
         }
 
-        public ObservableCollection<FileListItem> Files { get; } = new ObservableCollection<FileListItem>();
         public string CurrentDirectory => _fileListService.CurrentDirectory;
+        public ObservableCollection<FileListItem> Files { get; } = new ObservableCollection<FileListItem>();
 
         public void Dispose() => _fileDirectoryChangedEventToken.Dispose();
 
@@ -39,16 +39,6 @@ namespace ProcureSoft.ExifEditor.Modules.Files.FileList
             PopulateFileList();
         }
 
-        private void PopulateFileList()
-        {
-            Files.Clear();
-            foreach (var file in _fileListService.GetAllFiles())
-            {
-                var fileListItem = new FileListItem(file.Name, file.Directory.FullName, HasExifData(file));
-                Files.Add(fileListItem);
-            }
-        }
-
         private bool HasExifData(FileInfo fileInfo)
         {
             try
@@ -59,6 +49,16 @@ namespace ProcureSoft.ExifEditor.Modules.Files.FileList
             catch (UnsupportedFormatException)
             {
                 return false;
+            }
+        }
+
+        private void PopulateFileList()
+        {
+            Files.Clear();
+            foreach (var file in _fileListService.GetAllFiles())
+            {
+                var fileListItem = new FileListItem(file.Name, file.Directory.FullName, HasExifData(file));
+                Files.Add(fileListItem);
             }
         }
     }

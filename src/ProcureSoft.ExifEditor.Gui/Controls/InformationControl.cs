@@ -41,11 +41,6 @@ namespace ProcureSoft.ExifEditor.Gui.Controls
         }
 
         private static DependencyObject GetHeader(FrameworkElement view)
-        {
-            if (view?.Resources["HeaderIcon"] is DataTemplate template)
-                return template.LoadContent();
-
-            return null;
-        }
+            => view?.Resources["HeaderIcon"] is DataTemplate template ? template.LoadContent() : null;
     }
 }

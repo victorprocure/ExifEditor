@@ -1,0 +1,8 @@
+﻿// This file is used by Code Analysis to maintain SuppressMessage attributes that are applied to this
+// project. Project-level suppressions either have no target or are given a specific target and
+// scoped to a namespace, type, member, etc.
+
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Wrong Usage", "DF0010:Marks undisposed local variables.", Justification = "<Pending>", Scope = "member", Target = "~M:ProcureSoft.ExifEditor.Modules.Files.Controls.StoragePicker.OnRefreshed(ProcureSoft.ExifEditor.Modules.Files.Controls.ISystemProvider,System.String)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Wrong Usage", "DF0000:Marks undisposed anonymous objects from object creations.", Justification = "<Pending>", Scope = "member", Target = "~M:ProcureSoft.ExifEditor.Modules.Files.Controls.StoragePicker.#ctor")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Wrong Usage", "DF0000:Marks undisposed anonymous objects from object creations.", Justification = "<Pending>", Scope = "member", Target = "~M:ProcureSoft.ExifEditor.Modules.Files.Controls.CheckableSystemObject.#ctor(System.String,ProcureSoft.ExifEditor.Modules.Files.Controls.ISystemProvider,System.Nullable{System.Boolean})")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Wrong Usage", "DF0000:Marks undisposed anonymous objects from object creations.", Justification = "<Pending>", Scope = "member", Target = "~M:ProcureSoft.ExifEditor.Modules.Files.Controls.CheckableSystemObject.Query(ProcureSoft.ExifEditor.Modules.Files.Controls.ISystemProvider)")]

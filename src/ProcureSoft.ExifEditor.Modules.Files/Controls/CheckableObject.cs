@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml.Serialization;
 using Prism.Mvvm;
 
 namespace ProcureSoft.ExifEditor.Modules.Files.Controls
