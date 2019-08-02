@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 using ProcureSoft.ExifEditor.Infrastructure.Collections;
 
 namespace ProcureSoft.ExifEditor.Modules.Files.Controls
